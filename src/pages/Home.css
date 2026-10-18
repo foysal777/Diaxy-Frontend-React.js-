@@ -159,8 +159,7 @@
   max-width: 520px;
   position: relative;
   z-index: 1;
-  mix-blend-mode: multiply;   /* makes white pixels transparent on light bg */
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.08));
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.1));
 }
 
 @keyframes animate-float {
