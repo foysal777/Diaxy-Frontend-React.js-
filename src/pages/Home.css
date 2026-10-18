@@ -428,7 +428,7 @@
    GET AN INSTANT ESTIMATE SECTION
    ════════════════════════════ */
 .estimate-section {
-  background: var(--color-white);
+  background: var(--color-bg);
   padding: 5rem 0 5.5rem;
   position: relative;
 }

@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import './Footer.css'
 
+const currentYear = new Date().getFullYear()
+
 function Footer() {
-  const year = new Date().getFullYear()
+  const year = currentYear
 
   return (
     <footer className="footer" id="footer">

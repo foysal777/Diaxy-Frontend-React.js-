@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import RetailPartners from '../components/RetailPartners'
 import './Home.css'
 
 /* ── Trust avatars (initials) ── */
@@ -372,6 +373,11 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* ════════════════════════════
+          TOP RETAIL PARTNERS CAROUSEL
+      ════════════════════════════ */}
+      <RetailPartners />
 
       {/* ════════════════════════════
           WHY CHOOSE US

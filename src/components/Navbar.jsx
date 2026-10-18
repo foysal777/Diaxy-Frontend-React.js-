@@ -56,9 +56,9 @@ function Navbar() {
         </nav>
 
         {/* Login */}
-        <button className="btn-login" id="navbar-login-btn" aria-label="Log in">
+        <Link to="/login" className="btn-login" id="navbar-login-btn" aria-label="Log in">
           Log In
-        </button>
+        </Link>
 
         {/* Hamburger */}
         <button
@@ -87,9 +87,14 @@ function Navbar() {
             <span aria-hidden="true">{icon}</span> {label}
           </NavLink>
         ))}
-        <button className="btn-login" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
+        <Link
+          to="/login"
+          className="btn-login"
+          style={{ width: '100%', justifyContent: 'center', display: 'flex', textDecoration: 'none' }}
+          onClick={() => setMenuOpen(false)}
+        >
           Log In
-        </button>
+        </Link>
       </div>
     </header>
   )
