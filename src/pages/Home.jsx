@@ -12,6 +12,140 @@ const features = [
   { id: 'feat-affordable', icon: '💲', label: 'Affordable pricing'     },
 ]
 
+/* ── Mover for every need items ── */
+const moverNeeds = [
+  {
+    id: 'need-home',
+    label: 'Home move',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" />
+        <path d="M9 21V12h6v9" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-apartment',
+    label: 'Apartment move',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="4" y="2" width="16" height="20" rx="2" />
+        <path d="M9 22v-4h6v4" />
+        <path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-college',
+    label: 'College move',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-office',
+    label: 'Office move',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-furniture',
+    label: 'Furniture Delivery',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
+        <path d="M3 11a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z" />
+        <path d="M6 19v2M18 19v2" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-storage',
+    label: 'Storage move',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="8" width="18" height="12" rx="2" />
+        <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        <circle cx="12" cy="14" r="1.5" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-marketplace',
+    label: 'FB Marketplace delivery',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+        <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+        <path d="M2 7h20" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-junk',
+    label: 'Junk removal',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        <line x1="10" y1="11" x2="10" y2="17" />
+        <line x1="14" y1="11" x2="14" y2="17" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-donation',
+    label: 'Donation pick up',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-craigslist',
+    label: 'Craigslist delivery',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="2" x2="12" y2="22" />
+        <line x1="12" y1="12" x2="4.93" y2="19.07" />
+        <line x1="12" y1="12" x2="19.07" y2="19.07" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-app',
+    label: 'Application delivery',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="5" y="2" width="14" height="20" rx="2" />
+        <path d="M12 18h.01" />
+        <path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01" />
+      </svg>
+    ),
+  },
+  {
+    id: 'need-labor',
+    label: 'Labor only',
+    icon: (
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2 20a10 10 0 0 1 20 0" />
+        <circle cx="12" cy="11" r="4" />
+        <path d="M6 9a6 6 0 0 1 12 0H6z" />
+        <path d="M12 3v3" />
+      </svg>
+    ),
+  },
+]
+
 function Home() {
   return (
     <div className="home" id="home-page">
@@ -158,12 +292,41 @@ function Home() {
       </section>
 
       {/* ════════════════════════════
+          A MOVER FOR EVERY NEED
+      ════════════════════════════ */}
+      <section className="section mover-needs-section" aria-label="A mover for every need">
+        <div className="container text-center">
+          <h2 className="mover-needs-title">
+            A mover for every need - Digaxy makes<br />
+            it simple
+          </h2>
+
+          <div className="mover-needs-grid" id="mover-needs-grid">
+            {moverNeeds.map(({ id, label, icon }) => (
+              <Link
+                key={id}
+                to="/book"
+                id={id}
+                className="mover-need-card"
+                aria-label={`Book ${label}`}
+              >
+                <div className="mover-need-card__icon">
+                  {icon}
+                </div>
+                <span className="mover-need-card__label">{label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════
           STATS BAND
       ════════════════════════════ */}
       <section className="stats-band" aria-label="Our stats">
         <div className="container stats-band__grid">
           {[
-            { id: 'stat-customers', value: '10k+',  label: 'Happy Customers' },
+            { id: 'stat-customers', value: 'A',  label: 'Happy Customers' },
             { id: 'stat-cities',    value: '50+',   label: 'Cities Covered'  },
             { id: 'stat-movers',    value: '500+',  label: 'Pro Movers'      },
             { id: 'stat-rating',    value: '4.9★',  label: 'Average Rating'  },

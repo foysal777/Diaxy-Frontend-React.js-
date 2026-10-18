@@ -1,17 +1,58 @@
-# React + Vite
+# Digaxy Frontend (React.js + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, responsive moving service platform frontend built with React and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 How to Run the Project
 
-## React Compiler
+### Prerequisites
+Make sure you have **Node.js** (v18 or higher recommended) and **npm** installed on your machine.
+Check your versions:
+```bash
+node -v
+npm -v
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+### 1. Install Dependencies
+Navigate to the project root folder and run:
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# Diaxy-Frontend-React.js-
+---
+
+### 2. Start the Development Server
+Run the local dev server:
+```bash
+npm run dev
+```
+Once started, open your browser and navigate to the local URL (typically **http://localhost:5173**).
+
+---
+
+### 3. Build for Production
+To create an optimized production build:
+```bash
+npm run build
+```
+The output will be placed in the `dist/` directory.
+
+---
+
+### 4. Preview the Production Build
+To preview the production build locally:
+```bash
+npm run preview
+```
+
+---
+
+### 5. Run Linter
+To check for lint issues:
+```bash
+npm run lint
+```
+
