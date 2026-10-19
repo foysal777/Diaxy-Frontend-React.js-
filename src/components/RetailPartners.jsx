@@ -80,7 +80,7 @@ const partners = [
         <text x="15" y="33" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="13" fill="#000000" letterSpacing="-0.5">
           BUY
         </text>
-        {/* Yellow Tag */}
+        {/* Yellow Tag for the Best Buy logo */}
         <polygon points="62,17 76,17 84,25 76,33 62,33" fill="#ffe000" stroke="#000" strokeWidth="0.5" />
         <circle cx="66" cy="25" r="2" fill="#000000" />
         {/* Target Bullseye Icon next to it */}
