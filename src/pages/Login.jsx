@@ -29,6 +29,7 @@ export function DigaxyCrest() {
 
 function Login() {
   const navigate = useNavigate()
+  const [role, setRole] = useState('user') // 'user' | 'driver'
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -45,15 +46,36 @@ function Login() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      const userProfile = {
-        name: 'Naim Doe',
-        email: email || 'naim@example.com'
+      if (role === 'driver') {
+        const driverProfile = {
+          name: 'Rakib Hassan',
+          email: email || 'rakib.driver@digaxy.com',
+          role: 'driver',
+          vehicle: 'Toyota Pickup Truck',
+          regNo: 'Dhaka Metro-U 14-8921',
+          rating: '4.9',
+          completedTrips: 184,
+          todayEarnings: 3450,
+          totalBalance: 28400
+        }
+        localStorage.setItem('currentUser', JSON.stringify(driverProfile))
+        setSuccessMsg('Driver signed in successfully! Redirecting to driver portal...')
+        setTimeout(() => {
+          navigate('/driver-dashboard')
+        }, 900)
+      } else {
+        const userProfile = {
+          name: 'Joe Mitchell',
+          email: email || 'joemitchell016@gmail.com',
+          role: 'user',
+          avatar: '/images/avatar.jpg'
+        }
+        localStorage.setItem('currentUser', JSON.stringify(userProfile))
+        setSuccessMsg('Signed in successfully! Redirecting to dashboard...')
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 900)
       }
-      localStorage.setItem('currentUser', JSON.stringify(userProfile))
-      setSuccessMsg('Logged in successfully! Redirecting to dashboard...')
-      setTimeout(() => {
-        navigate('/dashboard')
-      }, 900)
     }, 600)
   }
 
@@ -177,6 +199,42 @@ function Login() {
               ✓ {successMsg}
             </div>
           )}
+
+          {/* Account Type Selector: 1. Normal User  2. Driver */}
+          <div className="auth-role-card">
+            <span className="auth-role-title">Sign In As:</span>
+            <div className="auth-role-tabs" role="tablist">
+              <button
+                type="button"
+                className={`auth-role-tab ${role === 'user' ? 'auth-role-tab--active' : ''}`}
+                onClick={() => {
+                  setRole('user')
+                  if (!email || email.includes('driver')) setEmail('joemitchell016@gmail.com')
+                }}
+                role="tab"
+                aria-selected={role === 'user'}
+                id="role-tab-user"
+              >
+                <span className="auth-role-tab__icon">👤</span>
+                <span className="auth-role-tab__label">Normal User</span>
+              </button>
+
+              <button
+                type="button"
+                className={`auth-role-tab ${role === 'driver' ? 'auth-role-tab--active' : ''}`}
+                onClick={() => {
+                  setRole('driver')
+                  if (!email || email.includes('joemitchell')) setEmail('rakib.driver@digaxy.com')
+                }}
+                role="tab"
+                aria-selected={role === 'driver'}
+                id="role-tab-driver"
+              >
+                <span className="auth-role-tab__icon">🚚</span>
+                <span className="auth-role-tab__label">Driver</span>
+              </button>
+            </div>
+          </div>
 
           <form onSubmit={handleSubmit} className="auth-form">
             {/* Phone */}

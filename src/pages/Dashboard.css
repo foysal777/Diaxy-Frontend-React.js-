@@ -866,12 +866,152 @@
   color: #8C9CA6;
 }
 
-/* Settings Form */
-.dash-settings-form {
+/* ========================================================
+   SETTINGS SECTION STYLES (Matching User Design)
+   ======================================================== */
+
+.dash-settings-pane {
+  max-width: 440px;
+}
+
+.dash-settings-header {
+  margin-bottom: 24px;
+}
+
+.dash-settings-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1C2D3A;
+  font-family: inherit;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.dash-settings-back-btn:hover {
+  opacity: 0.75;
+  transform: translateX(-2px);
+}
+
+.dash-settings-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #1C2D3A;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.dash-settings-subtitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1C2D3A;
+  letter-spacing: -0.015em;
+  margin: 0 0 20px 0;
+}
+
+/* User Profile Row */
+.dash-settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 4px;
+}
+
+.dash-settings-avatar-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border: 2px solid #FFFFFF;
+}
+
+.dash-settings-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dash-settings-user-info {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 3px;
+}
+
+.dash-settings-user-name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #1C2D3A;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.dash-settings-user-email {
+  font-size: 0.92rem;
+  color: #4A6372;
+  margin: 0;
+}
+
+/* Settings List Items */
+.dash-settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.dash-settings-item:hover {
+  opacity: 0.75;
+  transform: translateX(2px);
+}
+
+.dash-settings-item__label {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #1C2D3A;
+  letter-spacing: -0.01em;
+}
+
+.dash-settings-item__chevron {
+  display: flex;
+  align-items: center;
+  color: #1C2D3A;
+}
+
+.dash-settings-more-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4A6372;
+  margin: 22px 0 6px 0;
+}
+
+.dash-settings-item--logout {
+  margin-top: 4px;
+}
+
+.dash-settings-item__logout-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Settings Sub-Modals */
+.dash-settings-modal-card {
   max-width: 480px;
+}
+
+.dash-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .dash-form-row {
@@ -893,6 +1033,75 @@
   font-family: inherit;
   font-size: 0.95rem;
   background: #FAF7F2;
+  outline: none;
+}
+
+.dash-form-row input:focus {
+  border-color: #B8861E;
+  background: #FFFFFF;
+}
+
+.dash-form-error {
+  background: #FEECEB;
+  color: #C0392B;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.dash-form-success {
+  background: #EAF7EE;
+  color: #127A3A;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.dash-info-modal-body {
+  font-size: 0.9rem;
+  color: #3F5765;
+  line-height: 1.55;
+}
+
+.dash-info-modal-body h4 {
+  color: #0A2B39;
+  font-size: 0.95rem;
+  margin: 14px 0 4px 0;
+}
+
+.dash-support-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.dash-support-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #F8F6F1;
+  border: 1px solid #ECE7DD;
+  border-radius: 10px;
+}
+
+.dash-support-icon {
+  font-size: 1.4rem;
+}
+
+.dash-support-card strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #0A2B39;
+}
+
+.dash-support-card p {
+  font-size: 0.85rem;
+  color: #4A6372;
+  margin: 1px 0 0 0;
 }
 
 /* ── Booking Confirmation Modal ── */

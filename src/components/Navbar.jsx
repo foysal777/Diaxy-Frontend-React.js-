@@ -63,8 +63,13 @@ function Navbar() {
 
         {/* Login or Dashboard */}
         {currentUser ? (
-          <Link to="/dashboard" className="btn-login" id="navbar-login-btn" aria-label="Dashboard">
-            Dashboard
+          <Link
+            to={currentUser.role === 'driver' ? '/driver-dashboard' : '/dashboard'}
+            className="btn-login"
+            id="navbar-login-btn"
+            aria-label="Dashboard"
+          >
+            {currentUser.role === 'driver' ? 'Driver Portal' : 'Dashboard'}
           </Link>
         ) : (
           <Link to="/login" className="btn-login" id="navbar-login-btn" aria-label="Log in">

@@ -38,18 +38,26 @@ const VEHICLES = [
 ]
 
 const SAVED_PICKUP_ADDRESSES = [
-  '123 Main St',
-  '452 Oak Terrace, Apt 3B',
-  '789 Commercial Blvd, Suite 104',
-  '1020 Sunset Parkway'
+  'Road 27, Dhanmondi, Dhaka',
+  'Gulshan 2 (Near Circle), Dhaka',
+  'Road 11, Banani, Dhaka',
+  'Sector 7, Uttara, Dhaka',
+  'Block C, Bashundhara R/A, Dhaka',
+  'Mirpur 10 Circle, Dhaka',
+  'GEC Circle, Chattogram',
+  'Agrabad C/A, Chattogram',
+  'Zindabazar, Sylhet'
 ]
 
 const SAVED_DROP_ADDRESSES = [
-  '88 Riverside Way, Apt 4B',
-  '2400 Grand Ave, Floor 3',
-  '150 Market St, Suite 500',
-  '612 Pine Valley Road',
-  '305 West End Avenue'
+  'Gulshan 1, Avenue 1, Dhaka',
+  'Block D, Banani, Dhaka',
+  'Sector 11, Uttara, Dhaka',
+  'Block I, Bashundhara R/A, Dhaka',
+  'Motijheel C/A, Dhaka',
+  'Mohakhali DOHS, Dhaka',
+  'Nasirabad, Chattogram',
+  'Subid Bazar, Sylhet'
 ]
 
 function Dashboard() {
@@ -57,13 +65,13 @@ function Dashboard() {
   const [activeNav, setActiveNav] = useState('home')
   const [selectedVehicle, setSelectedVehicle] = useState('pickup')
   
-  // Pickup & Drop locations
-  const [pickupAddress, setPickupAddress] = useState('123 Main St')
+  // Pickup & Drop locations (Bangladesh)
+  const [pickupAddress, setPickupAddress] = useState('Road 27, Dhanmondi, Dhaka')
   const [isPickupOpen, setIsPickupOpen] = useState(false)
   const [customPickup, setCustomPickup] = useState('')
   const [showAddPickup, setShowAddPickup] = useState(false)
 
-  const [dropAddress, setDropAddress] = useState('88 Riverside Way, Apt 4B')
+  const [dropAddress, setDropAddress] = useState('Gulshan 1, Avenue 1, Dhaka')
   const [isDropOpen, setIsDropOpen] = useState(false)
   const [customDrop, setCustomDrop] = useState('')
   const [showAddDrop, setShowAddDrop] = useState(false)
@@ -73,25 +81,42 @@ function Dashboard() {
   const [bookingSuccess, setBookingSuccess] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // User state
+  // User state matching the Settings design
   const [user, setUser] = useState({
-    name: 'Naim Doe',
-    email: 'naim@example.com'
+    name: 'Joe Mitchell',
+    email: 'joemitchell016@gmail.com',
+    avatar: '/images/avatar.jpg'
   })
+
+  // Settings modals
+  const [settingsModal, setSettingsModal] = useState(null) // 'password' | 'privacy' | 'terms' | 'support'
+  const [currentPwd, setCurrentPwd] = useState('')
+  const [newPwd, setNewPwd] = useState('')
+  const [confirmPwd, setConfirmPwd] = useState('')
+  const [pwdMsg, setPwdMsg] = useState('')
+  const [pwdError, setPwdError] = useState('')
 
   useEffect(() => {
     try {
       const stored = localStorage.getItem('currentUser')
       if (stored) {
         const parsed = JSON.parse(stored)
-        if (parsed.name) setUser(parsed)
+        if (parsed.role === 'driver') {
+          navigate('/driver-dashboard')
+          return
+        }
+        setUser(prev => ({
+          ...prev,
+          name: parsed.name || 'Joe Mitchell',
+          email: parsed.email || 'joemitchell016@gmail.com'
+        }))
       } else {
-        localStorage.setItem('currentUser', JSON.stringify({ name: 'Naim Doe', email: 'naim@example.com' }))
+        localStorage.setItem('currentUser', JSON.stringify({ name: 'Joe Mitchell', email: 'joemitchell016@gmail.com', role: 'user' }))
       }
     } catch {
       // fallback
     }
-  }, [])
+  }, [navigate])
 
   const handleLogout = () => {
     localStorage.removeItem('currentUser')
@@ -270,7 +295,7 @@ function Dashboard() {
                 </h2>
                 <div className="dash-route-badge">
                   <span className="dash-route-badge__dot"></span>
-                  <span>Est. 8.4 miles • ~22 mins</span>
+                  <span>Est. 9.8 km • ~35 mins</span>
                 </div>
               </div>
 
@@ -581,8 +606,8 @@ function Dashboard() {
                   <div className="dash-booking-item__badge dash-booking-item__badge--completed">Completed</div>
                   <div className="dash-booking-item__info">
                     <h4>Van Move</h4>
-                    <p>📍 452 Oak Terrace → 🏁 1020 Sunset Pkwy</p>
-                    <span className="dash-booking-item__meta">Completed on Oct 14 • $97.20</span>
+                    <p>📍 Sector 7, Uttara, Dhaka → 🏁 Block C, Bashundhara R/A</p>
+                    <span className="dash-booking-item__meta">Completed on Oct 14 • Verified Move</span>
                   </div>
                   <button className="dash-sub-btn dash-sub-btn--outline">Receipt</button>
                 </div>
@@ -596,14 +621,27 @@ function Dashboard() {
           <div className="dash-content-pane animate-fade-in">
             <header className="dash-header">
               <h1 className="dash-title">Service Areas & Cities</h1>
-              <p className="dash-subtitle">Digaxy moving partners are ready across these metropolitan regions.</p>
+              <p className="dash-subtitle">Digaxy moving partners are ready across these major divisions and cities in Bangladesh.</p>
             </header>
             <div className="dash-cities-grid">
-              {['New York City', 'Los Angeles', 'Chicago', 'Houston', 'Miami', 'Austin', 'San Francisco', 'Seattle'].map((city) => (
-                <div key={city} className="dash-city-card">
+              {[
+                { name: 'Dhaka', desc: 'Available 24/7 across all 50+ zones' },
+                { name: 'Chattogram', desc: 'Agrabad, GEC, Nasirabad & Port' },
+                { name: 'Sylhet', desc: 'Zindabazar, Amberkhana & Sadar' },
+                { name: 'Rajshahi', desc: 'Shaheb Bazar & Metropolitan' },
+                { name: 'Khulna', desc: 'Shibbari, Daulatpur & Industrial' },
+                { name: 'Barishal', desc: 'Sadar & Southern Regional Hub' },
+                { name: 'Rangpur', desc: 'Dhap & Northern Highway Hub' },
+                { name: 'Cox\'s Bazar', desc: 'Kolatoli & Coastal Express' },
+                { name: 'Cumilla', desc: 'Kandirpar & Highway Corridor' },
+                { name: 'Gazipur', desc: 'Chowrasta, Joydebpur & Industrial' },
+                { name: 'Narayanganj', desc: 'Chashara, Port & Commercial Hub' },
+                { name: 'Mymensingh', desc: 'Ganginarpar & Central Division' }
+              ].map((c) => (
+                <div key={c.name} className="dash-city-card">
                   <span className="dash-city-pin">📍</span>
-                  <h4>{city}</h4>
-                  <p>Available 7 days / week</p>
+                  <h4>{c.name}</h4>
+                  <p>{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -640,52 +678,126 @@ function Dashboard() {
 
         {/* Settings View */}
         {activeNav === 'setting' && (
-          <div className="dash-content-pane animate-fade-in">
-            <header className="dash-header">
-              <h1 className="dash-title">Account Settings</h1>
-              <p className="dash-subtitle">Manage your personal profile and address preferences.</p>
-            </header>
-            <div className="dash-card-box dash-settings-form">
-              <div className="dash-form-row">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  value={user.name}
-                  onChange={(e) => {
-                    const updated = { ...user, name: e.target.value }
-                    setUser(updated)
-                    localStorage.setItem('currentUser', JSON.stringify(updated))
+          <div className="dash-content-pane dash-settings-pane animate-fade-in">
+            {/* Top Back Header: ← Settings */}
+            <div className="dash-settings-header">
+              <button
+                type="button"
+                className="dash-settings-back-btn"
+                onClick={() => setActiveNav('home')}
+                aria-label="Back to home"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C2D3A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <h1 className="dash-settings-title">Settings</h1>
+              </button>
+            </div>
+
+            {/* Account Settings Subtitle */}
+            <h2 className="dash-settings-subtitle">Account Settings</h2>
+
+            {/* Profile Row with Avatar */}
+            <div className="dash-settings-profile">
+              <div className="dash-settings-avatar-wrap">
+                <img
+                  src={user.avatar || '/images/avatar.jpg'}
+                  alt={user.name}
+                  className="dash-settings-avatar"
+                  onError={(e) => {
+                    e.target.src = '/images/avatar.jpg'
                   }}
                 />
               </div>
-              <div className="dash-form-row">
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  value={user.email}
-                  onChange={(e) => {
-                    const updated = { ...user, email: e.target.value }
-                    setUser(updated)
-                    localStorage.setItem('currentUser', JSON.stringify(updated))
-                  }}
-                />
+              <div className="dash-settings-user-info">
+                <h3 className="dash-settings-user-name">{user.name || 'Joe Mitchell'}</h3>
+                <p className="dash-settings-user-email">{user.email || 'joemitchell016@gmail.com'}</p>
               </div>
-              <div className="dash-form-row">
-                <label>Default Pickup Location</label>
-                <input
-                  type="text"
-                  value={pickupAddress}
-                  onChange={(e) => setPickupAddress(e.target.value)}
-                />
-              </div>
-              <div className="dash-form-row">
-                <label>Default Drop-Off Location</label>
-                <input
-                  type="text"
-                  value={dropAddress}
-                  onChange={(e) => setDropAddress(e.target.value)}
-                />
-              </div>
+            </div>
+
+            {/* Change Password Item */}
+            <div
+              className="dash-settings-item"
+              onClick={() => {
+                setPwdMsg('')
+                setPwdError('')
+                setSettingsModal('password')
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="dash-settings-item__label">Change Password</span>
+              <span className="dash-settings-item__chevron">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#253846" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            {/* More Section */}
+            <h3 className="dash-settings-more-title">More</h3>
+
+            {/* Privacy Policy */}
+            <div
+              className="dash-settings-item"
+              onClick={() => setSettingsModal('privacy')}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="dash-settings-item__label">Privacy Policy</span>
+              <span className="dash-settings-item__chevron">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#253846" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            {/* Terms & Condition */}
+            <div
+              className="dash-settings-item"
+              onClick={() => setSettingsModal('terms')}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="dash-settings-item__label">Terms & Condition</span>
+              <span className="dash-settings-item__chevron">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#253846" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            {/* Helps & Support */}
+            <div
+              className="dash-settings-item"
+              onClick={() => setSettingsModal('support')}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="dash-settings-item__label">Helps & Support</span>
+              <span className="dash-settings-item__chevron">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#253846" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            {/* Logout */}
+            <div
+              className="dash-settings-item dash-settings-item--logout"
+              onClick={handleLogout}
+              role="button"
+              tabIndex={0}
+            >
+              <span className="dash-settings-item__label">Logout</span>
+              <span className="dash-settings-item__logout-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+              </span>
             </div>
           </div>
         )}
@@ -728,7 +840,7 @@ function Dashboard() {
                     </div>
                     <div className="dash-modal-row">
                       <span>Route Distance:</span>
-                      <strong style={{ color: '#0c2d3b' }}>~8.4 miles (approx. 22 mins)</strong>
+                      <strong style={{ color: '#0c2d3b' }}>~9.8 km (approx. 35 mins via Express)</strong>
                     </div>
                     <div className="dash-modal-row">
                       <span>Vehicle Class:</span>
@@ -754,6 +866,175 @@ function Dashboard() {
                   </button>
                 </div>
               </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── Settings Sub-Modals ── */}
+      {settingsModal && (
+        <div className="dash-modal-overlay animate-fade-in" onClick={() => setSettingsModal(null)}>
+          <div className="dash-modal-card dash-settings-modal-card" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="dash-modal-header">
+              <h3>
+                {settingsModal === 'password' && 'Change Password'}
+                {settingsModal === 'privacy' && 'Privacy Policy'}
+                {settingsModal === 'terms' && 'Terms & Conditions'}
+                {settingsModal === 'support' && 'Helps & Support'}
+              </h3>
+              <button className="dash-modal-close" onClick={() => setSettingsModal(null)}>✕</button>
+            </div>
+
+            {/* Change Password Modal */}
+            {settingsModal === 'password' && (
+              <form
+                className="dash-password-form"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  if (!currentPwd || !newPwd || !confirmPwd) {
+                    setPwdError('Please fill in all password fields.')
+                    return
+                  }
+                  if (newPwd !== confirmPwd) {
+                    setPwdError('New passwords do not match.')
+                    return
+                  }
+                  if (newPwd.length < 6) {
+                    setPwdError('Password must be at least 6 characters.')
+                    return
+                  }
+                  setPwdError('')
+                  setPwdMsg('Password changed successfully!')
+                  setTimeout(() => {
+                    setSettingsModal(null)
+                    setCurrentPwd('')
+                    setNewPwd('')
+                    setConfirmPwd('')
+                    setPwdMsg('')
+                  }, 1400)
+                }}
+              >
+                {pwdError && <div className="dash-form-error">{pwdError}</div>}
+                {pwdMsg && <div className="dash-form-success">{pwdMsg}</div>}
+
+                <div className="dash-form-row">
+                  <label>Current Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter current password"
+                    value={currentPwd}
+                    onChange={(e) => setCurrentPwd(e.target.value)}
+                  />
+                </div>
+
+                <div className="dash-form-row">
+                  <label>New Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter new password (min. 6 chars)"
+                    value={newPwd}
+                    onChange={(e) => setNewPwd(e.target.value)}
+                  />
+                </div>
+
+                <div className="dash-form-row">
+                  <label>Confirm New Password</label>
+                  <input
+                    type="password"
+                    placeholder="Confirm new password"
+                    value={confirmPwd}
+                    onChange={(e) => setConfirmPwd(e.target.value)}
+                  />
+                </div>
+
+                <div className="dash-modal-footer" style={{ marginTop: '20px' }}>
+                  <button type="button" className="dash-modal-btn dash-modal-btn--secondary" onClick={() => setSettingsModal(null)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="dash-modal-btn dash-modal-btn--primary">
+                    Update Password
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* Privacy Policy */}
+            {settingsModal === 'privacy' && (
+              <div className="dash-info-modal-body">
+                <p>At <strong>Digaxy Bangladesh</strong>, protecting your personal data and location privacy is our paramount priority.</p>
+                <h4>1. Data We Collect</h4>
+                <p>We collect pickup and drop-off coordinates, contact phone numbers, and move scheduling parameters strictly to match you with vetted moving drivers.</p>
+                <h4>2. Location Security</h4>
+                <p>Real-time vehicle and shipment telemetry are encrypted in transit and never sold to third-party marketing entities.</p>
+                <h4>3. Account Rights</h4>
+                <p>You can request full export or permanent deletion of your moving history at any time through our support team.</p>
+                <div className="dash-modal-footer" style={{ marginTop: '20px' }}>
+                  <button type="button" className="dash-modal-btn dash-modal-btn--primary" onClick={() => setSettingsModal(null)}>
+                    I Understand
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Terms & Conditions */}
+            {settingsModal === 'terms' && (
+              <div className="dash-info-modal-body">
+                <p>By scheduling moving services with <strong>Digaxy</strong>, you agree to the following terms:</p>
+                <h4>1. Booking & Dispatches</h4>
+                <p>Arrival times are subject to prevailing city traffic conditions. Drivers will communicate directly via phone upon arrival.</p>
+                <h4>2. Cargo Safety & Handling</h4>
+                <p>All items handled by certified Digaxy crew members are protected under our Basic Move Protection policy against transit loss or damage.</p>
+                <h4>3. Free Cancellation</h4>
+                <p>Cancellations made at least 1 hour prior to pickup time incur zero cancellation penalties.</p>
+                <div className="dash-modal-footer" style={{ marginTop: '20px' }}>
+                  <button type="button" className="dash-modal-btn dash-modal-btn--primary" onClick={() => setSettingsModal(null)}>
+                    Accept Terms
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Helps & Support */}
+            {settingsModal === 'support' && (
+              <div className="dash-info-modal-body">
+                <p>Our Dhaka-based customer care team is available 24/7 to assist with your moving inquiries and on-trip requests.</p>
+                <div className="dash-support-channels">
+                  <div className="dash-support-card">
+                    <span className="dash-support-icon">📞</span>
+                    <div>
+                      <strong>24/7 Helpline</strong>
+                      <p>+880 9612-DIGAXY (344299)</p>
+                    </div>
+                  </div>
+                  <div className="dash-support-card">
+                    <span className="dash-support-icon">💬</span>
+                    <div>
+                      <strong>WhatsApp Support</strong>
+                      <p>+880 1712-345678</p>
+                    </div>
+                  </div>
+                  <div className="dash-support-card">
+                    <span className="dash-support-icon">✉️</span>
+                    <div>
+                      <strong>Email Support</strong>
+                      <p>support@digaxy.com.bd</p>
+                    </div>
+                  </div>
+                  <div className="dash-support-card">
+                    <span className="dash-support-icon">📍</span>
+                    <div>
+                      <strong>Dhaka HQ Office</strong>
+                      <p>Road 27, Dhanmondi, Dhaka - 1209</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="dash-modal-footer" style={{ marginTop: '20px' }}>
+                  <button type="button" className="dash-modal-btn dash-modal-btn--primary" onClick={() => setSettingsModal(null)}>
+                    Close
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>

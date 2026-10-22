@@ -1,0 +1,530 @@
+/* ========================================================
+   DRIVER DASHBOARD STYLES (Matching User Driver Design)
+   ======================================================== */
+
+/* Sidebar Crest Logo at top of driver sidebar */
+.driver-crest-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.driver-crest-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-crest-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  color: #a46e05;
+  line-height: 1.1;
+}
+
+.driver-crest-sub {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2c3e50;
+  margin-top: 2px;
+}
+
+/* Driver Top Header & Online Status Toggle */
+.driver-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.driver-status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #EBE5DB;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.driver-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.driver-status-pill--online {
+  color: #107C41;
+}
+
+.driver-status-pill--offline {
+  color: #8C9CA6;
+}
+
+.driver-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.2);
+}
+
+.driver-status-pill--offline .driver-status-dot {
+  box-shadow: none;
+}
+
+.driver-status-toggle-btn {
+  background: #FAF7F2;
+  border: 1px solid #D5C5AC;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0A2B39;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.driver-status-toggle-btn:hover {
+  background: #ECE5D8;
+}
+
+/* Quick Stats Grid */
+.driver-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.driver-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #FFFFFF;
+  border: 1.5px solid #EBE5DB;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.driver-stat-icon {
+  font-size: 1.8rem;
+}
+
+.driver-stat-val {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0A2B39;
+  line-height: 1.15;
+}
+
+.driver-stat-label {
+  font-size: 0.8rem;
+  color: #6C7F8C;
+  font-weight: 500;
+}
+
+/* Dispatch Offer Card */
+.driver-badge-live {
+  background: #FEECEB;
+  color: #C0392B;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #F5C6CB;
+}
+
+.driver-request-card {
+  background: #FFFFFF;
+  border: 2px solid #D8C6AA;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  max-width: 680px;
+}
+
+.driver-request-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ECE7DD;
+}
+
+.driver-request-tag {
+  background: #EAF7EE;
+  color: #127A3A;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.driver-request-price {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0A2B39;
+  margin: 0;
+}
+
+.driver-request-est {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #3F5765;
+  font-weight: 600;
+}
+
+.driver-request-est small {
+  display: block;
+  font-size: 0.78rem;
+  color: #8C9CA6;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.driver-request-route {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 0;
+}
+
+.driver-route-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #1C2D3A;
+}
+
+.driver-route-line {
+  width: 2px;
+  height: 18px;
+  background: #C4B294;
+  margin-left: 5px;
+}
+
+.driver-pin-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.driver-pin-dot--green {
+  background: #107C41;
+}
+
+.driver-pin-dot--red {
+  background: #D14343;
+}
+
+.driver-request-details {
+  display: flex;
+  justify-content: space-between;
+  background: #FAF7F2;
+  border: 1px solid #ECE7DD;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 14px 0 20px 0;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.driver-request-details div {
+  font-size: 0.88rem;
+  color: #4A6372;
+}
+
+.driver-request-details strong {
+  display: block;
+  color: #0A2B39;
+  margin-top: 2px;
+}
+
+.driver-request-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.driver-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+  text-align: center;
+}
+
+.driver-btn--decline {
+  background: #EFF1F3;
+  color: #4A6372;
+}
+
+.driver-btn--decline:hover {
+  background: #E2E6EA;
+}
+
+.driver-btn--accept {
+  background: #A86E06;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(168, 110, 6, 0.25);
+}
+
+.driver-btn--accept:hover {
+  background: #935F05;
+}
+
+/* Active Trip Workflow */
+.driver-active-trip-card {
+  background: #FFFFFF;
+  border: 2px solid #107C41;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(16, 124, 65, 0.08);
+  max-width: 680px;
+}
+
+.driver-active-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.driver-badge-active {
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.driver-active-header h3 {
+  font-size: 1.15rem;
+  color: #0A2B39;
+  margin: 0 0 4px 0;
+}
+
+.driver-active-header p {
+  font-size: 0.88rem;
+  color: #6C7F8C;
+  margin: 0;
+}
+
+.driver-call-btn {
+  padding: 8px 16px;
+  background: #FAF7F2;
+  border: 1.5px solid #107C41;
+  color: #107C41;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.driver-steps-track {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 24px 0 28px 0;
+  padding: 0 10px;
+}
+
+.driver-steps-track::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 30px;
+  right: 30px;
+  height: 2px;
+  background: #E0E4E8;
+  z-index: 1;
+}
+
+.driver-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  gap: 8px;
+}
+
+.driver-step span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #C4D0D8;
+  color: #6C7F8C;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.driver-step label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8C9CA6;
+  text-align: center;
+}
+
+.driver-step--active span {
+  background: #107C41;
+  border-color: #107C41;
+  color: #FFFFFF;
+}
+
+.driver-step--active label {
+  color: #0A2B39;
+  font-weight: 700;
+}
+
+.driver-trip-done-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.driver-done-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px auto;
+}
+
+/* Wallet Card */
+.driver-wallet-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid #D8C6AA;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.driver-wallet-balance span {
+  font-size: 0.85rem;
+  color: #6C7F8C;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.driver-wallet-balance h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0A2B39;
+  margin: 4px 0;
+}
+
+.driver-wallet-balance small {
+  color: #107C41;
+  font-weight: 600;
+}
+
+/* Progress Tier Card */
+.driver-progress-tier-card {
+  background: #FFFFFF;
+  border: 1.5px solid #EBE5DB;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.driver-tier-badge {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ECE7DD;
+  margin-bottom: 20px;
+}
+
+.driver-tier-badge span {
+  font-size: 1.5rem;
+}
+
+.driver-tier-badge h3 {
+  font-size: 1.35rem;
+  color: #0A2B39;
+  margin: 6px 0 2px 0;
+}
+
+.driver-tier-badge p {
+  font-size: 0.9rem;
+  color: #A86E06;
+  font-weight: 600;
+}
+
+.driver-meters-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.driver-meter label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0A2B39;
+  margin-bottom: 6px;
+}
+
+.driver-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #EFF1F3;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.driver-bar-fill {
+  height: 100%;
+  background: #107C41;
+  border-radius: 6px;
+}
+
+.driver-meter strong {
+  font-size: 0.82rem;
+  color: #4A6372;
+}

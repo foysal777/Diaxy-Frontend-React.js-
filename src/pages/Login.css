@@ -438,6 +438,64 @@
   margin-bottom: 1.25rem;
 }
 
+/* Account Type Selector (Normal User vs Driver) */
+.auth-role-card {
+  margin-bottom: 1.25rem;
+}
+
+.auth-role-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7b8e99;
+  margin-bottom: 0.5rem;
+}
+
+.auth-role-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  background: #F4EFE6;
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid #E4DAC9;
+}
+
+.auth-role-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.8rem;
+  border: 1.5px solid transparent;
+  background: transparent;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #4a5d6a;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.auth-role-tab:hover {
+  color: #12303c;
+}
+
+.auth-role-tab--active {
+  background: #ffffff;
+  color: #12303c;
+  font-weight: 700;
+  border-color: #D4C3A6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.auth-role-tab__icon {
+  font-size: 1.05rem;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .auth-page {
