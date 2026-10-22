@@ -45,10 +45,15 @@ function Login() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      setSuccessMsg('Logged in successfully! Redirecting to home...')
+      const userProfile = {
+        name: 'Naim Doe',
+        email: email || 'naim@example.com'
+      }
+      localStorage.setItem('currentUser', JSON.stringify(userProfile))
+      setSuccessMsg('Logged in successfully! Redirecting to dashboard...')
       setTimeout(() => {
-        navigate('/')
-      }, 1200)
+        navigate('/dashboard')
+      }, 900)
     }, 600)
   }
 

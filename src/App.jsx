@@ -6,11 +6,12 @@ import About      from './pages/About'
 import Contact    from './pages/Contact'
 import Login      from './pages/Login'
 import SignUp     from './pages/SignUp'
+import Dashboard  from './pages/Dashboard'
 import ComingSoon from './pages/ComingSoon'
 
 function AppContent() {
   const location = useLocation()
-  const isAuthPage = ['/login', '/signin', '/signup'].includes(location.pathname)
+  const isAuthPage = ['/login', '/signin', '/signup', '/dashboard'].includes(location.pathname)
 
   return (
     <div className="app-wrapper">
@@ -23,11 +24,12 @@ function AppContent() {
           <Route path="/login"     element={<Login />}   />
           <Route path="/signin"    element={<Login />}   />
           <Route path="/signup"    element={<SignUp />}  />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/cities"    element={<ComingSoon title="Cities" />}          />
           <Route path="/retailers" element={<ComingSoon title="Retailers" />}       />
           <Route path="/partner"   element={<ComingSoon title="Become a Partner" />}/>
           <Route path="/estimate"  element={<ComingSoon title="Get Estimate" />}    />
-          <Route path="/book"      element={<ComingSoon title="Book a Move" />}     />
+          <Route path="/book"      element={<Dashboard />} />
           {/* 404 */}
           <Route path="*"          element={<ComingSoon title="Page Not Found" />}  />
         </Routes>

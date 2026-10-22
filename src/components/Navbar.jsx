@@ -14,9 +14,15 @@ function Navbar() {
   const [scrolled,  setScrolled]  = useState(false)
   const [menuOpen,  setMenuOpen]  = useState(false)
 
+  const [currentUser, setCurrentUser] = useState(null)
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
+    try {
+      const u = localStorage.getItem('currentUser')
+      if (u) setCurrentUser(JSON.parse(u))
+    } catch {}
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -55,10 +61,16 @@ function Navbar() {
           ))}
         </nav>
 
-        {/* Login */}
-        <Link to="/login" className="btn-login" id="navbar-login-btn" aria-label="Log in">
-          Log In
-        </Link>
+        {/* Login or Dashboard */}
+        {currentUser ? (
+          <Link to="/dashboard" className="btn-login" id="navbar-login-btn" aria-label="Dashboard">
+            Dashboard
+          </Link>
+        ) : (
+          <Link to="/login" className="btn-login" id="navbar-login-btn" aria-label="Log in">
+            Log In
+          </Link>
+        )}
 
         {/* Hamburger */}
         <button
