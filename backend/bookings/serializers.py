@@ -11,8 +11,9 @@ class BookingSerializer(serializers.ModelSerializer):
     customer = UserSerializer(read_only=True)
     driver = UserSerializer(read_only=True)
     vehicle_details = VehicleSerializer(source='vehicle', read_only=True)
+    vehicle = serializers.PrimaryKeyRelatedField(queryset=Vehicle.objects.all(), required=False)
     vehicle_id = serializers.PrimaryKeyRelatedField(
-        queryset=Vehicle.objects.all(), source='vehicle', write_only=True
+        queryset=Vehicle.objects.all(), source='vehicle', required=False, write_only=True
     )
 
     class Meta:

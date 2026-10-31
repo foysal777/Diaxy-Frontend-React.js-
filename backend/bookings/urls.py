@@ -5,7 +5,8 @@ from .views import (
     BookingDetailView,
     AvailableDispatchesView,
     AcceptBookingView,
-    UpdateBookingStatusView
+    UpdateBookingStatusView,
+    CancelBookingView
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('bookings/available/', AvailableDispatchesView.as_view(), name='available_dispatches'),
     path('bookings/<int:pk>/accept/', AcceptBookingView.as_view(), name='accept_booking'),
     path('bookings/<int:pk>/status/', UpdateBookingStatusView.as_view(), name='update_booking_status'),
+    path('bookings/<int:pk>/cancel/', CancelBookingView.as_view(), name='cancel_booking'),
 ]

@@ -96,3 +96,22 @@ class UpdateBookingStatusView(APIView):
             'message': f"Status updated to '{new_status}'.",
             'booking': BookingSerializer(booking).data
         }, status=status.HTTP_200_OK)
+
+class CancelBookingView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, pk, *args, **kwargs):
+        user = request.user
+        booking = get_object_or_404(Booking, pk=pk)
+        if booking.customer != user and user.role != 'driver':
+            return Response({'error': 'You do not have permission to cancel this booking.'}, status=status.HTTP_403_FORBIDDEN)
+        if booking.status in ['delivered', 'cancelled']:
+            return Response({'error': f"Cannot cancel a booking that is already {booking.status}."}, status=status.HTTP_400_BAD_REQUEST)
+
+        booking.status = 'cancelled'
+        booking.save()
+        return Response({
+            'message': f"Booking #{booking.id} cancelled successfully.",
+            'booking': BookingSerializer(booking).data
+        }, status=status.HTTP_200_OK)
+

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { loginUser } from '../services/api'
 import './Login.css'
 
 export function DigaxyCrest() {
@@ -37,46 +38,46 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false)
   const [loading, setLoading] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const [forgotModal, setForgotModal] = useState(false)
   const [forgotEmail, setForgotEmail] = useState('')
   const [forgotDone, setForgotDone] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      if (role === 'driver') {
-        const driverProfile = {
-          name: 'Rakib Hassan',
-          email: email || 'rakib.driver@digaxy.com',
-          role: 'driver',
-          vehicle: 'Toyota Pickup Truck',
-          regNo: 'Dhaka Metro-U 14-8921',
-          rating: '4.9',
-          completedTrips: 184,
-          todayEarnings: 3450,
-          totalBalance: 28400
-        }
-        localStorage.setItem('currentUser', JSON.stringify(driverProfile))
-        setSuccessMsg('Driver signed in successfully! Redirecting to driver portal...')
-        setTimeout(() => {
-          navigate('/driver-dashboard')
-        }, 900)
-      } else {
-        const userProfile = {
-          name: 'Joe Mitchell',
-          email: email || 'joemitchell016@gmail.com',
-          role: 'user',
-          avatar: '/images/avatar.jpg'
-        }
-        localStorage.setItem('currentUser', JSON.stringify(userProfile))
-        setSuccessMsg('Signed in successfully! Redirecting to dashboard...')
-        setTimeout(() => {
-          navigate('/dashboard')
-        }, 900)
+    setErrorMsg('')
+    setSuccessMsg('')
+
+    const targetEmail = (email.trim()) || (role === 'driver' ? 'rakib.driver@digaxy.com' : 'joemitchell016@gmail.com')
+    const targetPassword = password.trim() || 'pass1234'
+
+    try {
+      // Connect directly to Django REST backend
+      const data = await loginUser(targetEmail, targetPassword)
+      const user = data.user
+      const displayName = `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.username || 'Joe Mitchell'
+      const userProfile = {
+        ...user,
+        name: displayName,
+        email: user.email,
+        role: user.role
       }
-    }, 600)
+      localStorage.setItem('currentUser', JSON.stringify(userProfile))
+
+      if (user.role === 'driver') {
+        setSuccessMsg(`Welcome Driver ${displayName}! Authenticated with Django Backend.`)
+        setTimeout(() => navigate('/driver-dashboard'), 700)
+      } else {
+        setSuccessMsg(`Welcome ${displayName}! Authenticated with Django Backend.`)
+        setTimeout(() => navigate('/dashboard'), 700)
+      }
+    } catch (err) {
+      console.warn('Backend authentication error:', err)
+      setErrorMsg(err.message || 'Login failed. Please check credentials.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleForgotPassword = (e) => {
@@ -193,6 +194,12 @@ function Login() {
               Please log into your account and take out start the adventure.
             </p>
           </div>
+
+          {errorMsg && (
+            <div className="auth-alert auth-alert--error" style={{ background: '#fef2f2', color: '#b91c1c', border: '1px solid #fecaca', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px', fontSize: '0.9rem' }} role="alert">
+              ⚠️ {errorMsg}
+            </div>
+          )}
 
           {successMsg && (
             <div className="auth-alert auth-alert--success" role="status">

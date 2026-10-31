@@ -123,6 +123,18 @@ export async function updateTripStatus(bookingId, status) {
   return response.json()
 }
 
+export async function cancelBooking(bookingId) {
+  const response = await fetch(`${API_BASE_URL}/bookings/${bookingId}/cancel/`, {
+    method: 'POST',
+    headers: getAuthHeaders()
+  })
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}))
+    throw new Error(err.error || 'Failed to cancel booking')
+  }
+  return response.json()
+}
+
 // ── Earnings APIs ──
 export async function getEarningsSummary() {
   const response = await fetch(`${API_BASE_URL}/earnings/summary/`, {
